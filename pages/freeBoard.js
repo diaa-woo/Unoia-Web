@@ -14,7 +14,9 @@ export default function FreeBoard(){
                         <li className="view">조회수</li>
                     </ul>
                 </div>
-                <BoardList />
+                <div className="list">
+                    <BoardList />
+                </div>
             </div>
             <style jsx>{`
                 .title{
@@ -23,6 +25,7 @@ export default function FreeBoard(){
                     font-size: 40px;
                 }
                 .topBar{
+                    margin-top: 50px;
                     margin-left: 100px;
                     width: 1152px;
                     height: 46px;
@@ -47,6 +50,9 @@ export default function FreeBoard(){
                 }
                 .view{
                     margin-left: 70px;
+                }
+                .list{
+                    margin-left: 100px;
                 }
             `}</style>
         </>

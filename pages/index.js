@@ -10,11 +10,11 @@ export default function Home() {
     <Carousel showThumbs={false}>
       <div className='jb-wrap'>
         <img src='img1.jpeg' />
-        <p className='jb-text'>순수 바닷물에서 분리한 수소를 이용하여<br/>움직이는 선박, OHE 선박</p>
+        <p className='jb-text1'>순수 바닷물에서 분리한 수소를 이용하여<br/>움직이는 선박, OHE 선박</p>
       </div>
       <div>
         <img src='img2.jpeg' />
-        <p className='jb-text'>순수 바닷물에서 분리한 수소를 이용하여<br/>움직이는 선박, <strong>OHE 선박</strong></p>
+        <p className='jb-text2'>순수 바닷물에서 분리한 수소를 이용하여<br/>움직이는 선박, <strong>OHE 선박</strong></p>
       </div>
     </Carousel>
     <div className='intro'>
@@ -44,11 +44,19 @@ export default function Home() {
     img{
       height: 400px;
     }
-    .jb-text{
+    .jb-text1{
       position: absolute;
       top: 25%;
       left: 30%;
       color: black;
+      font-weight: bold;
+      font-size: 40px;
+    }
+    .jb-text2{
+      position: absolute;
+      top: 25%;
+      left: 30%;
+      color: yellow;
       font-weight: bold;
       font-size: 40px;
     }
