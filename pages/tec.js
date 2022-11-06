@@ -1,6 +1,19 @@
+import axios from "axios";
 import { useState } from "react"
+import awsIot from "aws-iot-device-sdk";
+//import fs from 'fs';
 
 export default function tec(){
+    console.log(process.cwd())
+    const fs = import('fs');
+    var ca = fs.readFileSync("C:/Users/SW2148/project/Unoia-Web/pages/api/keys/AmazonRootCA1.pem");
+    var key =  fs.readFileSync("C:/Users/SW2148/project/Unoia-Web/pages/api/keys/cert.pem.crt");
+    var cert = fs.readFileSync("C:/Users/SW2148/project/Unoia-Web/pages/api/keys/privateKey.pem.key");
+    const keys = {
+        "ca": ca,
+        "key": key,
+        "cert": cert,
+    };
     const [power, setPower] = useState(false);
     const [motor, setMotor] = useState(false);
     function powerOnOff(){
@@ -13,8 +26,33 @@ export default function tec(){
         setMotor(ch);
         console.log(motor);
     }
+    function awsConnect() {
+        let device = new awsIot.device({
+            keyPath: keys.key,
+            certPath: keys.cert,
+            caPath: keys.ca,
+            clientId: "Eunoia_shipDevice",
+            host: "a8igl60f8s1mm-ats.iot.ap-northeast-2.amazonaws.com" 
+         })
+         
+         const topic = "Eunoia-shipDevice/sub";
+         
+         device.on("connect", () => {
+         
+             console.log("connect");
+         
+             device.subscribe(topic);
+         
+             const connectionMsg = { message: "successful connection" };
+             device.publish(topic, JSON.stringify(connectionMsg));
+         });
+     
+    }
     return(
         <>  <div className="main">
+                <div>
+                    <button onClick={awsConnect}>connect</button>
+                </div>
                 <div className="left">
                     <div className="current">현재 1.852km/h로<br />달리는 중....</div>
                     <div className="bt">
